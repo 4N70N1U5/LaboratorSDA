@@ -1,0 +1,38 @@
+Complexitate: O(N * log N)
+
+Pentru a rezolva problema, am ales sa folosesc un BST pentru
+ca rezolvarea implica multe cautari succesive, pe care vreau
+sa le fac intr-un timp cat mai scurt. Pentru implementarea BST,
+folosesc set din STL.
+
+In primul rand, citesc din fisier toate comenzile, le retin,
+si determin toate momentele in care vor fi plasate pe banda
+portiile, adunand timpul constant de prepare, si pe acestea
+le introduc in BST. Comenzile le stochez intr-un vector,
+pentru ca va trebui sa le parcurg pe toate pentru a determina
+momentul in care fiecare client va manca pentru comanda respectiva.
+Folosind un struct retin despre comanda momentul in care a fost
+plasata, numarul scaunului clientului si numarul de ordine al
+comenzii, pentru ca acestea vor fi reordonate.
+
+Comenzile le voi sorta in vector dupa distanta clientului fata
+de bucatarie, deoarece fiecare client va lua o portie de pe banda
+cat de repede posibil, asa ca un client asezat mai aproape de
+bucatarie va avea "prioritate" fata de unul asezat mai departe.
+Comenzile aceluiasi client vor fi ordonate, bineinteles, in ordinea
+plasarii.
+
+In al doilea rand, pentru a determina momentele in care se va manca,
+voi parcurge comenzile in ordinea sortarii, si pentru fiecare comanda
+voi cauta in BST prima comanda care va aparea in fata scaunului
+clientului. Pentru asta, trebuie sa determin care este cea mai recenta
+comanda plasata pe banda, care nu a depasit inca scaunul clientului.
+Ca sa nu depaseasca clientul, o comanda trebuie sa nu fi fost plasata
+pe banda mai devreme decat valoarea obtinuta din scaderea distantei
+fata de bucatarie din momentul plasarii comenzii. Apoi, caut in BST 
+prima valoare mai mare sau egala cu aceasta valoare folosind
+lower_bound. Obtin astfel momentul in care portia de ramen care va fi
+mancata pentru acea comanda a fost plasata pe banda, si ca sa determin
+momentul in care se va manca, adun la aceasta valoare distanta fata de
+de bucatarie, adica timpul necesar ca portia sa ajunga la client.
+Portia respectiva este apoi stearsa din BST.

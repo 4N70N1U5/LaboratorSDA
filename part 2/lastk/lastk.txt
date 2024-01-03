@@ -1,0 +1,9 @@
+Complexitate: O(N + K) => O(N)
+
+Pentru a rezolva problema, folosesc un heap de minim (priority queue) in care
+stochez cele mai mari k numere din sir. Pe masura ce obtin valorile din sir
+dupa regula, mai intai introduc fiecare valoare obtinuta in heap, pana ajung
+la k numere in heap, iar apoi verific daca fiecar dintre urmatoarele valoari
+obtinute este mai mare decat minimul din heap, si daca da, atunci inlocuiesc
+radacina heap-ului cu noua valoare obtinuta. Astfel, dupa ce generez dupa
+formula cele n valori cerute din sir, in heap voi avea cele k valori cerute.

@@ -1,0 +1,23 @@
+Complexitate: O(log N) pentru addNum si O(1) pentru findMedian.
+Pentru N operatii => O(N * log N)
+
+Pentru a stoca numerele din sir, folosesc doua heap-uri, unul stang si unul
+drept, care se intalnesc la mijloc, si care puse impreuna formeaza practic tot
+sirul de numere intregi. Astfel, heap-ul stang va fi un heap de maxim care
+stocheaza jumatatea cu cele mai mici numere, iar cel drept un heap de minim
+care stocheaza jumatatea cu cele mai mari numere. Astfel, radacinile acestor
+heap-uri vor reprezenta valoare/valorile mediane. De asemenea, heap-urile vor
+respecta urmatoarea regula: daca in sir exista un numar par de valori, atunci
+cele doua heap-uri vor fi egale. Daca in sir exista un numar impar de valori,
+atunci obligatoriu heap-ul stang va avea cu o valoare mai mult decat cel drept.
+
+Pentru a adauga un numar, verific mai intai carui heap apartine, comparandu-l
+cu radacina heap-ului stang, si il adaug intr-unul din acestea. Apoi, mut
+valori dintr-un heap in altul, daca e nevoie, pana cand heap-urile respecta
+regula aleasa.
+
+Pentru a obtine valoarea mediana, mai intai verific daca cele doua heap-uri
+sunt egale (deci sirul are un numar par de valori), si daca da, returnez media
+aritmetica a radacinilor lor. Daca nu sunt egale, atunci valoarea mediana va fi
+radacina heap-ului stang, deoarece acesta stocheaza intotdeauna cu exact o
+valoare mai mult decat cel drept.
